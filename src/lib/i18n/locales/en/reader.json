@@ -1,0 +1,12 @@
+{
+  "journal": {
+    "title": "Reading Journal",
+    "your_books": "Your Books",
+    "book_title": "Book",
+    "rating": "Rating",
+    "review": "Review",
+    "read_date": "Read Date",
+    "no_books": "No books in your reading journal yet. Start reading!",
+    "enter_emoji": "Enter your emoji ID to view your reading journal"
+  }
+}

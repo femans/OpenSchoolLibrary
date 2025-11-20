@@ -1,0 +1,12 @@
+{
+  "journal": {
+    "title": "Leesdagboek",
+    "your_books": "Jouw boeken",
+    "book_title": "Boek",
+    "rating": "Beoordeling",
+    "review": "Recensie",
+    "read_date": "Gelezen op",
+    "no_books": "Nog geen boeken in je leesdagboek. Begin met lezen!",
+    "enter_emoji": "Voer je emoji-ID in om je leesdagboek te bekijken"
+  }
+}

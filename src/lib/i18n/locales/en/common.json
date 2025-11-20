@@ -1,0 +1,57 @@
+{
+  "app": {
+    "name": "OpenSchoolLibrary",
+    "tagline": "Simple Library Management for Schools"
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "books": "Books",
+    "children": "Children",
+    "copies": "Copies",
+    "loans": "Loans",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "actions": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "search": "Search",
+    "filter": "Filter",
+    "clear": "Clear",
+    "back": "Back",
+    "submit": "Submit",
+    "create": "Create",
+    "update": "Update",
+    "checkout": "Check Out",
+    "return": "Return",
+    "import": "Import",
+    "export": "Export",
+    "download": "Download"
+  },
+  "status": {
+    "available": "Available",
+    "checked_out": "Checked Out",
+    "lost": "Lost",
+    "damaged": "Damaged",
+    "active": "Active",
+    "returned": "Returned"
+  },
+  "messages": {
+    "loading": "Loading...",
+    "no_data": "No data available",
+    "success": "Operation successful",
+    "error": "An error occurred",
+    "confirm_delete": "Are you sure you want to delete this item?",
+    "select_required": "Please select a {field}",
+    "select_or_enter": "Please select a child or enter borrower name",
+    "success_checkout": "Book checked out successfully!",
+    "success_return": "Book returned successfully!",
+    "error_checkout": "Error checking out book",
+    "error_return": "Error returning book",
+    "error_prefix": "Error: "
+  }
+}

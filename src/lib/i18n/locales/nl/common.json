@@ -1,0 +1,57 @@
+{
+  "app": {
+    "name": "OpenSchoolLibrary",
+    "tagline": "Eenvoudig bibliotheekbeheer voor scholen"
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "books": "Boeken",
+    "children": "Kinderen",
+    "copies": "Exemplaren",
+    "loans": "Uitleningen",
+    "login": "Inloggen",
+    "logout": "Uitloggen"
+  },
+  "actions": {
+    "save": "Opslaan",
+    "cancel": "Annuleren",
+    "delete": "Verwijderen",
+    "edit": "Bewerken",
+    "add": "Toevoegen",
+    "search": "Zoeken",
+    "filter": "Filteren",
+    "clear": "Wissen",
+    "back": "Terug",
+    "submit": "Versturen",
+    "create": "Aanmaken",
+    "update": "Bijwerken",
+    "checkout": "Uitlenen",
+    "return": "Inleveren",
+    "import": "Importeren",
+    "export": "Exporteren",
+    "download": "Downloaden"
+  },
+  "status": {
+    "available": "Beschikbaar",
+    "checked_out": "Uitgeleend",
+    "lost": "Verloren",
+    "damaged": "Beschadigd",
+    "active": "Actief",
+    "returned": "Ingeleverd"
+  },
+  "messages": {
+    "loading": "Laden...",
+    "no_data": "Geen gegevens beschikbaar",
+    "success": "Bewerking geslaagd",
+    "error": "Er is een fout opgetreden",
+    "confirm_delete": "Weet je zeker dat je dit item wilt verwijderen?",
+    "select_required": "Selecteer een {field}",
+    "select_or_enter": "Selecteer een kind of voer de naam van de lener in",
+    "success_checkout": "Boek succesvol uitgeleend!",
+    "success_return": "Boek succesvol ingeleverd!",
+    "error_checkout": "Fout bij het uitlenen van het boek",
+    "error_return": "Fout bij het inleveren van het boek",
+    "error_prefix": "Fout: "
+  }
+}
