@@ -9,14 +9,16 @@ export const GET: RequestHandler = async ({ url }) => {
 
 		let query = supabaseServer
 			.from('loans')
-			.select(`
+			.select(
+				`
 				*,
 				copy:copies(
 					*,
 					book:books(*)
 				),
 				child:children(*)
-			`)
+			`
+			)
 			.eq('org_id', orgId);
 
 		if (filter === 'active') {

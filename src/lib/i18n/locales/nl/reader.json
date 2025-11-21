@@ -1,25 +1,25 @@
 {
-  "journal": {
-    "title": "Leeslogboek",
-    "your_books": "Jouw Boeken",
-    "book_title": "Boek",
-    "rating": "Beoordeling",
-    "review": "Recensie",
-    "read_date": "Leesdatum",
-    "no_books": "Nog geen boeken in je leeslogboek. Begin met lezen!",
-    "enter_emoji": "Voer je emoji-ID in om je leeslogboek te bekijken",
-    "generate_random": "Genereer Willekeurig ID",
-    "generating": "Genereren...",
-    "choose_emojis": "Kies Je Emoji's",
-    "cancel": "Annuleren",
-    "emoji_help": "Hou je niet van je emoji? Krijg een willekeurige of kies je favorieten!",
-    "pick_3_emojis": "Kies 3 Emoji's voor Je ID",
-    "save_emojis": "Bewaar Geselecteerde Emoji's"
-  },
-  "picker": {
-    "select_emojis": "Selecteer 3 emoji's",
-    "selected": "Geselecteerd",
-    "click_to_remove": "Klik om te verwijderen",
-    "combination_taken": "Deze combinatie is al in gebruik"
-  }
+	"journal": {
+		"title": "Leeslogboek",
+		"your_books": "Jouw Boeken",
+		"book_title": "Boek",
+		"rating": "Beoordeling",
+		"review": "Recensie",
+		"read_date": "Leesdatum",
+		"no_books": "Nog geen boeken in je leeslogboek. Begin met lezen!",
+		"enter_emoji": "Voer je emoji-ID in om je leeslogboek te bekijken",
+		"generate_random": "Genereer Willekeurig ID",
+		"generating": "Genereren...",
+		"choose_emojis": "Kies Je Emoji's",
+		"cancel": "Annuleren",
+		"emoji_help": "Hou je niet van je emoji? Krijg een willekeurige of kies je favorieten!",
+		"pick_3_emojis": "Kies 3 Emoji's voor Je ID",
+		"save_emojis": "Bewaar Geselecteerde Emoji's"
+	},
+	"picker": {
+		"select_emojis": "Selecteer 3 emoji's",
+		"selected": "Geselecteerd",
+		"click_to_remove": "Klik om te verwijderen",
+		"combination_taken": "Deze combinatie is al in gebruik"
+	}
 }

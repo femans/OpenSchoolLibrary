@@ -18,11 +18,13 @@ export const GET: RequestHandler = async ({ url }) => {
 
 		let query = supabaseServer
 			.from('copies')
-			.select(`
+			.select(
+				`
 				*,
 				book:books!inner(*),
 				location:locations(*)
-			`)
+			`
+			)
 			.eq('org_id', orgId)
 			.is('deleted_at', null)
 			.is('book.deleted_at', null);

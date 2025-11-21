@@ -26,7 +26,7 @@ export function generateEmojiId(): string {
 export function isValidEmojiId(emojiId: string): boolean {
 	// Split by emoji using spread operator (handles multi-byte unicode)
 	const emojis = [...emojiId];
-	return emojis.length === 3 && emojis.every(e => EMOJI_POOL.includes(e as any));
+	return emojis.length === 3 && emojis.every((e) => EMOJI_POOL.includes(e));
 }
 
 /**

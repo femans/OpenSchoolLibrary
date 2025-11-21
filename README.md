@@ -188,10 +188,11 @@ For hosting multiple schools:
 **TODO before going multi-tenant:**
 
 1. **Implement org resolution** in `src/lib/server/supabaseServer.ts`:
+
    ```ts
    export function getOrgId(user: User): string {
-     // Get org_id from user's JWT claims or admins table
-     return user.app_metadata.org_id;
+   	// Get org_id from user's JWT claims or admins table
+   	return user.app_metadata.org_id;
    }
    ```
 
@@ -274,32 +275,39 @@ CREATE POLICY "Admins can upload book covers" ON storage.objects
 ## API Endpoints
 
 ### Books
+
 - `GET /api/books` - List all books
 - `POST /api/books` - Create book
 - `DELETE /api/books/[id]` - Delete book
 
 ### Children
+
 - `GET /api/children` - List all children
 - `POST /api/children` - Create child (auto-generates emoji ID)
 - `DELETE /api/children/[id]` - Delete child
 
 ### Copies
+
 - `GET /api/copies?status=available` - List copies (optional status filter)
 
 ### Loans
+
 - `GET /api/loans?filter=active` - List loans (all/active/returned)
 
 ### Checkout/Return
+
 - `POST /api/checkout` - Checkout a book
 - `POST /api/return` - Return a book
 
 ### Utilities
+
 - `GET /api/isbn?isbn=9780140283334` - Lookup book by ISBN (OpenLibrary)
 - `POST /api/import/csv` - Bulk import books from CSV
 - `POST /api/upload/cover` - Upload book cover (TODO: implement)
 - `GET /api/upload/cover?filename=cover.jpg` - Get signed upload URL
 
 ### Public
+
 - `GET /api/reader/[emoji]` - Get child's reading journal (no auth required)
 
 ## Internationalization (i18n)
@@ -337,7 +345,7 @@ Users can switch languages using the language selector in the navigation bar. Th
 
 ```svelte
 <script>
-  import { t } from '$lib/i18n';
+	import { t } from '$lib/i18n';
 </script>
 
 <h1>{$t('admin.dashboard.title')}</h1>
@@ -346,20 +354,22 @@ Users can switch languages using the language selector in the navigation bar. Th
 ### Translation Structure
 
 Translation keys follow a hierarchical structure:
+
 - `common.*` - Shared across all pages
 - `admin.*` - Admin-specific content
 - `reader.*` - Reader journal content
 
 Example:
+
 ```json
 {
-  "admin": {
-    "books": {
-      "title": "Books",
-      "add_book": "Add Book",
-      "success_created": "Book created successfully"
-    }
-  }
+	"admin": {
+		"books": {
+			"title": "Books",
+			"add_book": "Add Book",
+			"success_created": "Book created successfully"
+		}
+	}
 }
 ```
 

@@ -38,6 +38,7 @@ supabase db reset
 ## Single-Org Setup
 
 The `seed-single-org.sql` file creates:
+
 - A default organization with ID `00000000-0000-0000-0000-000000000000`
 - Sample locations (Main Library, Classroom A, Classroom B)
 - Sample books for testing

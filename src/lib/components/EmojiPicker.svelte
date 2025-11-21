@@ -45,14 +45,6 @@
 		dispatch('change', newSelection);
 	}
 
-	function isSelected(emoji: string): boolean {
-		return selectedSet.has(emoji);
-	}
-
-	function clearSelection() {
-		selectedEmojis = [];
-		dispatch('change', selectedEmojis);
-	}
 </script>
 
 <div class="emoji-picker">

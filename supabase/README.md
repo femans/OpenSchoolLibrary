@@ -5,26 +5,31 @@ This directory is used by Supabase CLI for local development.
 ## Setup Local Supabase
 
 1. Install Supabase CLI:
+
 ```bash
 npm install -g supabase
 ```
 
 2. Initialize (already done if this file exists):
+
 ```bash
 supabase init
 ```
 
 3. Start local Supabase:
+
 ```bash
 supabase start
 ```
 
 4. This will provide local credentials:
+
 - API URL: http://localhost:54321
 - Anon key: (will be displayed)
 - Service role key: (will be displayed)
 
 5. Apply migrations:
+
 ```bash
 supabase db reset  # Applies all migrations
 ```

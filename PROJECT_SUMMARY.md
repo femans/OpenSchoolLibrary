@@ -7,6 +7,7 @@ Complete SvelteKit + TypeScript + Supabase multi-tenant school library managemen
 ## ✅ Completed Features
 
 ### Core Functionality
+
 - ✅ Multi-tenant data model with `org_id` on all tables
 - ✅ Single-org mode for private deployments (env flag toggle)
 - ✅ Admin authentication via Supabase Auth
@@ -19,6 +20,7 @@ Complete SvelteKit + TypeScript + Supabase multi-tenant school library managemen
 - ✅ CSV bulk import for books and copies
 
 ### Technical Implementation
+
 - ✅ Full TypeScript throughout
 - ✅ Zod validation on all server endpoints
 - ✅ Proper service_role key isolation (server-only)
@@ -30,6 +32,7 @@ Complete SvelteKit + TypeScript + Supabase multi-tenant school library managemen
 - ✅ Multi-tenant database schema with indexes
 
 ### Deployment Options
+
 - ✅ Docker + adapter-node for private installations
 - ✅ Vercel configuration for SaaS deployments
 - ✅ Docker Compose setup
@@ -37,6 +40,7 @@ Complete SvelteKit + TypeScript + Supabase multi-tenant school library managemen
 - ✅ Health check in Dockerfile
 
 ### Documentation
+
 - ✅ Comprehensive README with quickstart guides
 - ✅ Docker deployment instructions
 - ✅ Vercel deployment instructions
@@ -119,6 +123,7 @@ OpenSchoolLibrary/
 ## 🔐 Security Implementation
 
 ### ✅ Implemented
+
 - Service_role key never exposed to client
 - Clear labeling in .env.example
 - Server-only code in `src/lib/server/`
@@ -128,6 +133,7 @@ OpenSchoolLibrary/
 - Security headers in vercel.json
 
 ### 📝 Documented for Production
+
 - RLS policy examples in schema.sql
 - Admin mapping guidance
 - Org membership patterns
@@ -137,6 +143,7 @@ OpenSchoolLibrary/
 ## 🚀 Ready to Run
 
 After `npm install` and configuring `.env`, the project can:
+
 1. Run `npm run dev` for local development
 2. Run `npm test` to execute vitest tests
 3. Build with `docker build -t open-school-library .`
@@ -157,6 +164,7 @@ After `npm install` and configuring `.env`, the project can:
 ## 📊 Database Schema
 
 ### Tables Created
+
 1. **organizations** - Root multi-tenant table
 2. **admins** - User to org mapping with roles
 3. **books** - Book catalog with authors array
@@ -167,6 +175,7 @@ After `npm install` and configuring `.env`, the project can:
 8. **reading_journal** - Book reviews by children
 
 ### Features
+
 - UUID primary keys
 - Proper foreign key constraints
 - ON DELETE CASCADE for data integrity
@@ -178,13 +187,16 @@ After `npm install` and configuring `.env`, the project can:
 ## 🔧 Environment Configuration
 
 ### Single-Org Mode (Default)
+
 ```env
 SINGLE_ORG_MODE=true
 SINGLE_ORG_ID=00000000-0000-0000-0000-000000000000
 ```
 
 ### Multi-Tenant Mode
+
 Remove single-org variables and implement:
+
 - User org resolution from JWT/session
 - RLS policies on all tables
 - Org selection UI
@@ -192,11 +204,13 @@ Remove single-org variables and implement:
 ## 📦 Dependencies
 
 ### Production
+
 - @supabase/supabase-js v2
 - zod (validation)
 - qrcode (QR generation)
 
 ### Development
+
 - SvelteKit 2
 - TypeScript 5
 - Vite 5
@@ -205,12 +219,14 @@ Remove single-org variables and implement:
 - Prettier + ESLint
 
 ### Adapters
+
 - @sveltejs/adapter-node (Docker)
 - @sveltejs/adapter-vercel (Vercel)
 
 ## 🎯 MVP Status
 
 ### ✅ Fully Implemented
+
 - All core features working
 - Both deployment targets supported
 - Complete documentation
@@ -220,6 +236,7 @@ Remove single-org variables and implement:
 - Minimal but functional UI
 
 ### 🚧 Production TODOs (Documented in Code)
+
 - Complete cover upload implementation
 - Add pagination for large lists
 - Implement advanced RLS policies
@@ -232,6 +249,7 @@ Remove single-org variables and implement:
 ## 🎓 Usage Scenarios
 
 ### Private School (Docker)
+
 1. Pull repo and run `./setup.sh`
 2. Configure Supabase credentials
 3. Run with Docker Compose
@@ -239,6 +257,7 @@ Remove single-org variables and implement:
 5. Start managing books
 
 ### SaaS Provider (Vercel)
+
 1. Fork/clone repo
 2. Switch to adapter-vercel
 3. Deploy to Vercel

@@ -8,10 +8,12 @@ import { supabase } from '$lib/supabaseClient';
 export const handle: Handle = async ({ event, resolve }) => {
 	// Get the session from the cookie or token
 	const session = event.cookies.get('sb-access-token');
-	
+
 	if (session) {
 		// Set the session in the Supabase client
-		const { data: { user } } = await supabase.auth.getUser(session);
+		const {
+			data: { user }
+		} = await supabase.auth.getUser(session);
 		event.locals.user = user;
 	} else {
 		event.locals.user = null;

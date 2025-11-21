@@ -32,10 +32,12 @@ export const GET: RequestHandler = async ({ params }) => {
 		// Get journal entries with book details
 		const { data: entries, error: entriesError } = await supabaseServer
 			.from('reading_journal')
-			.select(`
+			.select(
+				`
 				*,
 				book:books!inner(*)
-			`)
+			`
+			)
 			.eq('org_id', orgId)
 			.eq('child_id', child.id)
 			.is('book.deleted_at', null)

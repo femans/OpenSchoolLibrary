@@ -1,25 +1,25 @@
 {
-  "journal": {
-    "title": "Reading Journal",
-    "your_books": "Your Books",
-    "book_title": "Book",
-    "rating": "Rating",
-    "review": "Review",
-    "read_date": "Read Date",
-    "no_books": "No books in your reading journal yet. Start reading!",
-    "enter_emoji": "Enter your emoji ID to view your reading journal",
-    "generate_random": "Generate Random ID",
-    "generating": "Generating...",
-    "choose_emojis": "Choose Your Emojis",
-    "cancel": "Cancel",
-    "emoji_help": "Don't like your emoji? Get a random one or pick your favorites!",
-    "pick_3_emojis": "Pick 3 Emojis for Your ID",
-    "save_emojis": "Save Selected Emojis"
-  },
-  "picker": {
-    "select_emojis": "Select 3 emojis",
-    "selected": "Selected",
-    "click_to_remove": "Click to remove",
-    "combination_taken": "This combination is already taken"
-  }
+	"journal": {
+		"title": "Reading Journal",
+		"your_books": "Your Books",
+		"book_title": "Book",
+		"rating": "Rating",
+		"review": "Review",
+		"read_date": "Read Date",
+		"no_books": "No books in your reading journal yet. Start reading!",
+		"enter_emoji": "Enter your emoji ID to view your reading journal",
+		"generate_random": "Generate Random ID",
+		"generating": "Generating...",
+		"choose_emojis": "Choose Your Emojis",
+		"cancel": "Cancel",
+		"emoji_help": "Don't like your emoji? Get a random one or pick your favorites!",
+		"pick_3_emojis": "Pick 3 Emojis for Your ID",
+		"save_emojis": "Save Selected Emojis"
+	},
+	"picker": {
+		"select_emojis": "Select 3 emojis",
+		"selected": "Selected",
+		"click_to_remove": "Click to remove",
+		"combination_taken": "This combination is already taken"
+	}
 }

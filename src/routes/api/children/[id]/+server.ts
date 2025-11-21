@@ -19,14 +19,14 @@ export const PATCH: RequestHandler = async ({ params, request }) => {
 				.is('deleted_at', null)
 				.neq('id', childId); // Exclude current child
 
-			const existingIds = existing?.map(c => c.emoji_id) || [];
+			const existingIds = existing?.map((c) => c.emoji_id) || [];
 			const newEmojiId = generateUniqueEmojiId(existingIds);
 
 			const { data, error } = await supabaseServer
 				.from('children')
-				.update({ 
+				.update({
 					emoji_id: newEmojiId,
-					updated_at: new Date().toISOString() 
+					updated_at: new Date().toISOString()
 				})
 				.eq('id', childId)
 				.eq('org_id', orgId)
@@ -60,15 +60,18 @@ export const PATCH: RequestHandler = async ({ params, request }) => {
 				.maybeSingle();
 
 			if (existing) {
-				return json({ error: 'This emoji combination is already taken. Please choose different emojis.' }, { status: 409 });
+				return json(
+					{ error: 'This emoji combination is already taken. Please choose different emojis.' },
+					{ status: 409 }
+				);
 			}
 
 			// Update with custom emoji ID
 			const { data, error } = await supabaseServer
 				.from('children')
-				.update({ 
+				.update({
 					emoji_id: customEmojiId,
-					updated_at: new Date().toISOString() 
+					updated_at: new Date().toISOString()
 				})
 				.eq('id', childId)
 				.eq('org_id', orgId)

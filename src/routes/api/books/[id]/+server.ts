@@ -2,7 +2,7 @@ import { json } from '@sveltejs/kit';
 import { supabaseServer, getOrgId } from '$lib/server/supabaseServer';
 import type { RequestHandler } from './$types';
 
-	export const DELETE: RequestHandler = async ({ params }) => {
+export const DELETE: RequestHandler = async ({ params }) => {
 	try {
 		const orgId = getOrgId();
 		const bookId = params.id;

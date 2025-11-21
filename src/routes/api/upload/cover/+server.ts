@@ -4,21 +4,24 @@ import type { RequestHandler } from './$types';
 
 /**
  * Cover upload endpoint using Supabase Storage
- * 
+ *
  * TODO: Implement file upload handling
  * This is a placeholder showing the pattern.
  * In production, use proper multipart form handling.
  */
-export const POST: RequestHandler = async ({ request }) => {
+export const POST: RequestHandler = async ({ request: _request }) => {
 	try {
 		// TODO: Parse multipart form data
 		// const formData = await request.formData();
 		// const file = formData.get('file') as File;
 
-		return json({ 
-			error: 'Cover upload not yet implemented',
-			message: 'TODO: Implement file upload with Supabase Storage or use signed URLs'
-		}, { status: 501 });
+		return json(
+			{
+				error: 'Cover upload not yet implemented',
+				message: 'TODO: Implement file upload with Supabase Storage or use signed URLs'
+			},
+			{ status: 501 }
+		);
 
 		// Example implementation:
 		// const { data, error } = await supabaseServer.storage
@@ -44,7 +47,7 @@ export const POST: RequestHandler = async ({ request }) => {
 export const GET: RequestHandler = async ({ url }) => {
 	try {
 		const filename = url.searchParams.get('filename');
-		
+
 		if (!filename) {
 			return json({ error: 'Filename required' }, { status: 400 });
 		}
@@ -57,11 +60,11 @@ export const GET: RequestHandler = async ({ url }) => {
 
 		if (error) throw error;
 
-		return json({ 
-			data: { 
+		return json({
+			data: {
 				signedUrl: data.signedUrl,
 				path: data.path
-			} 
+			}
 		});
 	} catch (error) {
 		console.error('Error generating signed URL:', error);

@@ -6,7 +6,7 @@ import type { RequestEvent } from '@sveltejs/kit';
 /**
  * Create a Supabase client for server-side operations with user's session.
  * This respects Row Level Security (RLS) policies.
- * 
+ *
  * @param event - SvelteKit RequestEvent containing cookies
  * @returns Supabase client with user's session
  */
@@ -28,16 +28,12 @@ export function createServerClient(event: RequestEvent) {
  * Note: Supabase is phasing out service_role keys in favor of RLS.
  * This now uses the anon key - ensure RLS policies are properly configured.
  */
-export const supabaseServer = createClient(
-	PUBLIC_SUPABASE_URL,
-	PUBLIC_SUPABASE_ANON_KEY,
-	{
-		auth: {
-			autoRefreshToken: false,
-			persistSession: false
-		}
+export const supabaseServer = createClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY, {
+	auth: {
+		autoRefreshToken: false,
+		persistSession: false
 	}
-);
+});
 
 /**
  * Get the organization ID for the current context.
@@ -50,6 +46,6 @@ export function getOrgId(): string {
 	if (SINGLE_ORG_MODE === 'true' || SINGLE_ORG_ID) {
 		return SINGLE_ORG_ID || '00000000-0000-0000-0000-000000000000';
 	}
-	
+
 	throw new Error('Multi-tenant mode requires org_id from user context');
 }

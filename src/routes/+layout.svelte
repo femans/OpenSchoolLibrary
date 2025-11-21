@@ -6,8 +6,9 @@
 	import { page } from '$app/stores';
 	import { t } from '$lib/i18n';
 	import LanguageSelector from '$lib/components/LanguageSelector.svelte';
+	import type { User } from '@supabase/supabase-js';
 
-	let user: any = null;
+	let user: User | null = null;
 
 	onMount(() => {
 		// Get initial session
@@ -40,10 +41,6 @@
 		await supabase.auth.signOut();
 	}
 
-	// Check if current path requires auth
-	$: isAuthRequired = $page.url.pathname.startsWith('/admin') || 
-	                     $page.url.pathname.startsWith('/checkout') || 
-	                     $page.url.pathname.startsWith('/return');
 	$: isLoginPage = $page.url.pathname === '/login';
 </script>
 
