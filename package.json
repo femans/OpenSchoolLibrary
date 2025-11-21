@@ -1,7 +1,25 @@
 {
   "name": "open-school-library",
   "version": "0.1.0",
+  "description": "Simple library management system for schools - Open source, privacy-focused, and kid-friendly",
   "private": true,
+  "author": "Frido Emans",
+  "homepage": "https://openschoollibrary.org",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/femans/OpenSchoolLibrary.git"
+  },
+  "bugs": {
+    "url": "https://github.com/femans/OpenSchoolLibrary/issues"
+  },
+  "keywords": [
+    "library",
+    "school",
+    "education",
+    "sveltekit",
+    "supabase",
+    "open-source"
+  ],
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
