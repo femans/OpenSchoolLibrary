@@ -11,10 +11,12 @@ export const GET: RequestHandler = async ({ url }) => {
 			.from('copies')
 			.select(`
 				*,
-				book:books(*),
+				book:books!inner(*),
 				location:locations(*)
 			`)
-			.eq('org_id', orgId);
+			.eq('org_id', orgId)
+			.is('deleted_at', null)
+			.is('book.deleted_at', null);
 
 		if (status) {
 			query = query.eq('status', status);

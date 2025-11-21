@@ -27,7 +27,7 @@ CREATE TABLE admins (
     UNIQUE(org_id, user_id)
 );
 
--- Books table
+-- Books table (bibliographic metadata - shared across physical copies)
 CREATE TABLE books (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
@@ -35,21 +35,25 @@ CREATE TABLE books (
     authors TEXT[] NOT NULL DEFAULT '{}',
     isbn TEXT,
     cover_url TEXT,
-    metadata JSONB DEFAULT '{}',
+    metadata JSONB DEFAULT '{}', -- Additional fields: language, publication_year, publisher, pages, genre, reading_level, etc.
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ
+    updated_at TIMESTAMPTZ,
+    deleted_at TIMESTAMPTZ -- Soft delete
 );
 
 -- Locations table (e.g., "Classroom A", "Library Shelf 3")
+-- Use this to organize physical books within your library/school
 CREATE TABLE locations (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
     name TEXT NOT NULL,
     description TEXT,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    deleted_at TIMESTAMPTZ -- Soft delete
 );
 
--- Copies table (physical book copies)
+-- Copies table (physical book inventory - the actual books on your shelves)
+-- Each copy represents one physical book that can be checked out
 CREATE TABLE copies (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
     org_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
@@ -59,7 +63,8 @@ CREATE TABLE copies (
     status TEXT NOT NULL DEFAULT 'available' CHECK (status IN ('available', 'checked_out', 'lost', 'damaged')),
     notes TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-    updated_at TIMESTAMPTZ
+    updated_at TIMESTAMPTZ,
+    deleted_at TIMESTAMPTZ -- Soft delete
 );
 
 -- Children table (students/readers with emoji IDs)
@@ -71,6 +76,7 @@ CREATE TABLE children (
     grade_or_class TEXT,
     created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
     updated_at TIMESTAMPTZ,
+    deleted_at TIMESTAMPTZ, -- Soft delete
     UNIQUE(org_id, emoji_id) -- Emoji ID must be unique within org
 );
 
@@ -103,12 +109,16 @@ CREATE TABLE reading_journal (
 -- Create indexes for performance
 CREATE INDEX idx_books_org_id ON books(org_id);
 CREATE INDEX idx_books_isbn ON books(isbn);
+CREATE INDEX idx_books_deleted ON books(deleted_at) WHERE deleted_at IS NULL;
 CREATE INDEX idx_locations_org_id ON locations(org_id);
+CREATE INDEX idx_locations_deleted ON locations(deleted_at) WHERE deleted_at IS NULL;
 CREATE INDEX idx_copies_org_id ON copies(org_id);
 CREATE INDEX idx_copies_book_id ON copies(book_id);
 CREATE INDEX idx_copies_status ON copies(status);
+CREATE INDEX idx_copies_deleted ON copies(deleted_at) WHERE deleted_at IS NULL;
 CREATE INDEX idx_children_org_id ON children(org_id);
 CREATE INDEX idx_children_emoji_id ON children(org_id, emoji_id);
+CREATE INDEX idx_children_deleted ON children(deleted_at) WHERE deleted_at IS NULL;
 CREATE INDEX idx_loans_org_id ON loans(org_id);
 CREATE INDEX idx_loans_copy_id ON loans(copy_id);
 CREATE INDEX idx_loans_child_id ON loans(child_id);

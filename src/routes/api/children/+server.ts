@@ -9,7 +9,7 @@ const ChildSchema = z.object({
 	grade_or_class: z.string().optional()
 });
 
-export const GET: RequestHandler = async () => {
+	export const GET: RequestHandler = async () => {
 	try {
 		const orgId = getOrgId();
 
@@ -17,9 +17,8 @@ export const GET: RequestHandler = async () => {
 			.from('children')
 			.select('*')
 			.eq('org_id', orgId)
-			.order('created_at', { ascending: false });
-
-		if (error) throw error;
+			.is('deleted_at', null)
+			.order('created_at', { ascending: false });		if (error) throw error;
 
 		return json({ data });
 	} catch (error) {
@@ -38,7 +37,8 @@ export const POST: RequestHandler = async ({ request }) => {
 		const { data: existing } = await supabaseServer
 			.from('children')
 			.select('emoji_id')
-			.eq('org_id', orgId);
+			.eq('org_id', orgId)
+			.is('deleted_at', null);
 
 		const existingIds = existing?.map(c => c.emoji_id) || [];
 		const emojiId = generateUniqueEmojiId(existingIds);

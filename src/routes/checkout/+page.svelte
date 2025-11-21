@@ -11,8 +11,7 @@
 		copy_id: '',
 		child_id: '',
 		borrower_name: '',
-		borrower_class: '',
-		due_date: ''
+		borrower_class: ''
 	};
 
 	let message = '';
@@ -70,8 +69,7 @@
 					copy_id: '',
 					child_id: '',
 					borrower_name: '',
-					borrower_class: '',
-					due_date: ''
+					borrower_class: ''
 				};
 				await loadAvailableCopies();
 			} else {
@@ -136,11 +134,6 @@
 				<div>
 					<label for="checkout-borrower-class" class="block text-sm font-medium mb-1">{$t('admin.loans.borrower_class')}</label>
 					<input id="checkout-borrower-class" bind:value={formData.borrower_class} class="input" placeholder="{$t('admin.loans.borrower_class_placeholder')}" />
-				</div>
-
-				<div>
-					<label for="checkout-due-date" class="block text-sm font-medium mb-1">{$t('admin.loans.due_date')}</label>
-					<input id="checkout-due-date" bind:value={formData.due_date} type="date" class="input" />
 				</div>
 
 				<button type="submit" class="btn btn-primary w-full">

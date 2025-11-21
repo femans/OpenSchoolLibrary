@@ -11,7 +11,7 @@ const BookSchema = z.object({
 	metadata: z.record(z.unknown()).optional()
 });
 
-export const GET: RequestHandler = async () => {
+	export const GET: RequestHandler = async () => {
 	try {
 		const orgId = getOrgId();
 
@@ -19,9 +19,8 @@ export const GET: RequestHandler = async () => {
 			.from('books')
 			.select('*')
 			.eq('org_id', orgId)
-			.order('title');
-
-		if (error) throw error;
+			.is('deleted_at', null)
+			.order('title');		if (error) throw error;
 
 		return json({ data });
 	} catch (error) {

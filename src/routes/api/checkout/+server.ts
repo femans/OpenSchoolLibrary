@@ -23,6 +23,7 @@ export const POST: RequestHandler = async ({ request }) => {
 			.select('*')
 			.eq('id', validated.copy_id)
 			.eq('org_id', orgId)
+			.is('deleted_at', null)
 			.single();
 
 		if (copyError || !copy) {

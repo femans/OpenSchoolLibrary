@@ -60,9 +60,10 @@ export interface Book {
 	authors: string[]; // Array of author names
 	isbn?: string;
 	cover_url?: string;
-	metadata?: Record<string, unknown>; // Additional book info (publisher, year, etc.)
+	metadata?: Record<string, unknown>; // Additional book info (language, publication_year, publisher, pages, genre, reading_level, etc.)
 	created_at: string;
 	updated_at?: string;
+	deleted_at?: string; // Soft delete
 }
 
 export interface Location {
@@ -71,6 +72,7 @@ export interface Location {
 	name: string;
 	description?: string;
 	created_at: string;
+	deleted_at?: string; // Soft delete
 }
 
 export interface Copy {
@@ -83,6 +85,7 @@ export interface Copy {
 	notes?: string;
 	created_at: string;
 	updated_at?: string;
+	deleted_at?: string; // Soft delete
 }
 
 export interface Child {
@@ -93,6 +96,7 @@ export interface Child {
 	grade_or_class?: string;
 	created_at: string;
 	updated_at?: string;
+	deleted_at?: string; // Soft delete
 }
 
 export interface Loan {

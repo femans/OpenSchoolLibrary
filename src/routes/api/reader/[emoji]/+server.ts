@@ -22,6 +22,7 @@ export const GET: RequestHandler = async ({ params }) => {
 			.select('*')
 			.eq('org_id', orgId)
 			.eq('emoji_id', emojiId)
+			.is('deleted_at', null)
 			.single();
 
 		if (childError || !child) {
@@ -33,10 +34,11 @@ export const GET: RequestHandler = async ({ params }) => {
 			.from('reading_journal')
 			.select(`
 				*,
-				book:books(*)
+				book:books!inner(*)
 			`)
 			.eq('org_id', orgId)
 			.eq('child_id', child.id)
+			.is('book.deleted_at', null)
 			.order('created_at', { ascending: false });
 
 		if (entriesError) {

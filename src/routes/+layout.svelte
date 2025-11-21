@@ -54,8 +54,8 @@
 			<div class="container mx-auto px-4 py-3">
 				<div class="flex items-center justify-between">
 					<div class="flex items-center space-x-6">
-						<a href="/admin" class="text-xl font-bold hover:text-blue-200">
-							📚 {$t('common.app.name')}
+						<a href="/admin" class="hover:opacity-80">
+							<img src="/OSL froggy.png" alt="OpenSchoolLibrary" class="h-12 md:h-24" />
 						</a>
 						<a href="/admin/books" class="hover:text-blue-200">{$t('common.nav.books')}</a>
 						<a href="/admin/copies" class="hover:text-blue-200">{$t('common.nav.copies')}</a>
