@@ -8,16 +8,24 @@
       localStorage.setItem('locale', newLocale);
     }
   }
+
+  function getFlag(lang: string): string {
+    const flags: Record<string, string> = {
+      'en': '🇬🇧',
+      'nl': '🇳🇱'
+    };
+    return flags[lang] || '🌐';
+  }
 </script>
 
 <div class="language-selector">
   <select 
     value={$locale} 
     on:change={(e) => changeLocale(e.currentTarget.value)}
-    class="px-2 py-1 border rounded bg-white dark:bg-gray-800"
+    class="px-3 py-1 border border-white rounded bg-blue-500 text-white hover:bg-blue-400 cursor-pointer"
   >
     {#each $locales as loc}
-      <option value={loc}>{loc.toUpperCase()}</option>
+      <option value={loc} class="bg-white text-black">{getFlag(loc)} {loc.toUpperCase()}</option>
     {/each}
   </select>
 </div>
