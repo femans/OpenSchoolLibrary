@@ -53,9 +53,9 @@
     "select_child_placeholder": "-- Select a child or enter name below --"
   },
   "copies": {
-    "title": "Copies",
-    "add_copy": "Add Copy",
-    "edit_copy": "Edit Copy",
+    "title": "Catalogue",
+    "add_copy": "Add Book to Catalogue",
+    "edit_copy": "Edit Book",
     "book": "Book",
     "location": "Location",
     "barcode": "Barcode",
@@ -63,11 +63,11 @@
     "notes": "Notes",
     "select_book": "Select a book",
     "select_location": "Select a location",
-    "no_copies": "No copies found. Add your first copy!",
-    "success_created": "Copy created successfully",
-    "success_updated": "Copy updated successfully",
-    "success_deleted": "Copy deleted successfully",
-    "select_book_copy": "Select Book Copy *",
+    "no_copies": "No books in catalogue. Add your first book!",
+    "success_created": "Book added to catalogue",
+    "success_updated": "Book updated successfully",
+    "success_deleted": "Book removed from catalogue",
+    "select_book_copy": "Select Book *",
     "select_book_placeholder": "-- Select a book --"
   },
   "loans": {

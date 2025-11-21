@@ -58,7 +58,7 @@
 							<img src="/OSL froggy.png" alt="OpenSchoolLibrary" class="h-12 md:h-24" />
 						</a>
 						<a href="/admin/books" class="hover:text-blue-200">{$t('common.nav.books')}</a>
-						<a href="/admin/copies" class="hover:text-blue-200">{$t('common.nav.copies')}</a>
+						<a href="/admin/catalogue" class="hover:text-blue-200">{$t('common.nav.copies')}</a>
 						<a href="/admin/children" class="hover:text-blue-200">{$t('common.nav.children')}</a>
 						<a href="/admin/loans" class="hover:text-blue-200">{$t('common.nav.loans')}</a>
 						<a href="/checkout" class="hover:text-blue-200">{$t('common.actions.checkout')}</a>

@@ -53,9 +53,9 @@
     "select_child_placeholder": "-- Selecteer een kind of voer hieronder de naam in --"
   },
   "copies": {
-    "title": "Exemplaren",
-    "add_copy": "Exemplaar toevoegen",
-    "edit_copy": "Exemplaar bewerken",
+    "title": "Catalogus",
+    "add_copy": "Boek toevoegen aan catalogus",
+    "edit_copy": "Boek bewerken",
     "book": "Boek",
     "location": "Locatie",
     "barcode": "Barcode",
@@ -63,11 +63,11 @@
     "notes": "Notities",
     "select_book": "Selecteer een boek",
     "select_location": "Selecteer een locatie",
-    "no_copies": "Geen exemplaren gevonden. Voeg je eerste exemplaar toe!",
-    "success_created": "Exemplaar succesvol aangemaakt",
-    "success_updated": "Exemplaar succesvol bijgewerkt",
-    "success_deleted": "Exemplaar succesvol verwijderd",
-    "select_book_copy": "Selecteer boekexemplaar *",
+    "no_copies": "Geen boeken in catalogus. Voeg je eerste boek toe!",
+    "success_created": "Boek toegevoegd aan catalogus",
+    "success_updated": "Boek succesvol bijgewerkt",
+    "success_deleted": "Boek verwijderd uit catalogus",
+    "select_book_copy": "Selecteer boek *",
     "select_book_placeholder": "-- Selecteer een boek --"
   },
   "loans": {

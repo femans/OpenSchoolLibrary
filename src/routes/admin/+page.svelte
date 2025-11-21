@@ -55,7 +55,7 @@
 			<a href="/admin/books" class="btn btn-primary text-center">
 				📚 {$t('admin.dashboard.manage_books')}
 			</a>
-			<a href="/admin/copies" class="btn btn-primary text-center">
+			<a href="/admin/catalogue" class="btn btn-primary text-center">
 				📖 {$t('admin.dashboard.manage_copies')}
 			</a>
 			<a href="/admin/children" class="btn btn-primary text-center">

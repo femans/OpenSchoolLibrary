@@ -24,7 +24,7 @@
 
 	async function loadAvailableCopies() {
 		try {
-			const response = await fetch('/api/copies?status=available');
+			const response = await fetch('/api/catalogue?status=available');
 			const data = await response.json();
 			copies = data.data || [];
 		} catch (error) {

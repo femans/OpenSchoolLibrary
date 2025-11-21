@@ -13,7 +13,7 @@
 	async function loadCopies() {
 		loading = true;
 		try {
-			const response = await fetch('/api/copies');
+			const response = await fetch('/api/catalogue');
 			const data = await response.json();
 			copies = data.data || [];
 		} catch (error) {
@@ -30,7 +30,7 @@
 <div>
 	<div class="flex justify-between items-center mb-6">
 		<h1 class="text-3xl font-bold">{$t('admin.copies.title')}</h1>
-		<a href="/admin/copies/add" class="btn btn-primary">{$t('admin.copies.add_copy')}</a>
+		<a href="/admin/catalogue/add" class="btn btn-primary">{$t('admin.copies.add_copy')}</a>
 	</div>
 
 	{#if loading}
