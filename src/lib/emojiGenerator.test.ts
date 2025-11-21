@@ -1,10 +1,11 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import {
 	generateEmojiId,
 	isValidEmojiId,
 	isUniqueEmojiId,
 	generateUniqueEmojiId
 } from './emojiGenerator';
+import * as emojiPool from './emojiPool';
 
 describe('emojiGenerator', () => {
 	it('should generate an emoji ID with 3 emojis', () => {
@@ -48,8 +49,27 @@ describe('emojiGenerator', () => {
 	});
 
 	it('should throw error if unable to generate unique ID', () => {
-		// Create a scenario where it's impossible to find a unique ID
-		const allPossibleIds = Array(10000).fill(0).map(() => generateEmojiId());
-		expect(() => generateUniqueEmojiId(allPossibleIds, 5)).toThrow();
+		// Mock a very small emoji pool to make collisions guaranteed
+		const smallPool = ['😀', '😍', '😎'];
+		vi.spyOn(emojiPool, 'EMOJI_POOL', 'get').mockReturnValue(smallPool as any);
+		
+		// With only 3 emojis, there are only 3^3 = 27 possible combinations
+		// Create all possible combinations to force a collision
+		const existing = [
+			'😀😀😀', '😀😀😍', '😀😀😎',
+			'😀😍😀', '😀😍😍', '😀😍😎',
+			'😀😎😀', '😀😎😍', '😀😎😎',
+			'😍😀😀', '😍😀😍', '😍😀😎',
+			'😍😍😀', '😍😍😍', '😍😍😎',
+			'😍😎😀', '😍😎😍', '😍😎😎',
+			'😎😀😀', '😎😀😍', '😎😀😎',
+			'😎😍😀', '😎😍😍', '😎😍😎',
+			'😎😎😀', '😎😎😍', '😎😎😎'
+		];
+		
+		// Now all 27 combinations are taken, so it should throw
+		expect(() => generateUniqueEmojiId(existing, 10)).toThrow('Unable to generate unique emoji ID after maximum attempts');
+		
+		vi.restoreAllMocks();
 	});
 });

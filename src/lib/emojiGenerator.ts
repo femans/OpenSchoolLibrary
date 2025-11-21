@@ -1,30 +1,9 @@
+import { EMOJI_POOL } from './emojiPool';
+
 /**
  * Generate a unique 3-emoji identifier for children.
  * This allows anonymous reading tracking without collecting personal info.
  */
-
-// Curated list of recognizable emojis (avoiding similar-looking ones)
-const EMOJI_POOL = [
-	'😀', '😃', '😄', '😁', '😊', '😍', '🤗', '🤩', '🥳', '😎',
-	'🐶', '🐱', '🐭', '🐹', '🐰', '🦊', '🐻', '🐼', '🐨', '🐯',
-	'🦁', '🐮', '🐷', '🐸', '🐵', '🐔', '🐧', '🐦', '🐤', '🦆',
-	'🦉', '🦇', '🐺', '🐗', '🐴', '🦄', '🐝', '🐛', '🦋', '🐌',
-	'🐞', '🐢', '🐍', '🦎', '🦖', '🦕', '🐙', '🦑', '🦐', '🐠',
-	'🐟', '🐡', '🐬', '🦈', '🐳', '🐋', '🌸', '🌺', '🌻', '🌷',
-	'🌹', '🌼', '🌈', '⭐', '✨', '🌟', '💫', '☀️', '🌙', '⚡',
-	'🔥', '💧', '🌊', '🍎', '🍊', '🍋', '🍌', '🍉', '🍇', '🍓',
-	'🍒', '🍑', '🥝', '🥑', '🌽', '🥕', '🍄', '🥜', '🍕', '🍔',
-	'🌮', '🍿', '🍩', '🍪', '🎂', '🍰', '🧁', '🍦', '🍨', '🎨',
-	'🎭', '🎪', '🎬', '🎤', '🎧', '🎼', '🎹', '🎸', '🎺', '🎷',
-	'🥁', '🎻', '⚽', '🏀', '🏈', '⚾', '🎾', '🏐', '🏉', '🎱',
-	'🏓', '🏸', '🥊', '🥋', '⛷️', '🏂', '⛸️', '🚴', '🏆', '🥇',
-	'🎯', '🎲', '🎰', '🧩', '🚗', '🚕', '🚙', '🚌', '🚎', '🏎️',
-	'🚓', '🚑', '🚒', '🚐', '🚚', '🚛', '🚜', '🛴', '🚲', '🛹',
-	'✈️', '🚁', '🚂', '🚆', '🚇', '🚊', '🚝', '🚄', '🚅', '🚈',
-	'⛵', '🛶', '🚤', '⛴️', '🚀', '🛸', '🏠', '🏡', '🏰', '🏯',
-	'🗼', '🗽', '⛪', '🕌', '🕍', '⛩️', '🏛️', '💎', '📚', '📖',
-	'✏️', '✒️', '🖊️', '🖍️', '📝', '💼', '📂', '📅', '📌', '✂️'
-];
 
 /**
  * Generate a random 3-emoji ID.
@@ -40,14 +19,14 @@ export function generateEmojiId(): string {
 }
 
 /**
- * Validate an emoji ID format (must be exactly 3 emojis).
+ * Validate an emoji ID format (must be exactly 3 emojis from our curated pool).
  * @param emojiId The emoji string to validate
  * @returns true if valid format
  */
 export function isValidEmojiId(emojiId: string): boolean {
 	// Split by emoji using spread operator (handles multi-byte unicode)
 	const emojis = [...emojiId];
-	return emojis.length === 3 && emojis.every(e => EMOJI_POOL.includes(e));
+	return emojis.length === 3 && emojis.every(e => EMOJI_POOL.includes(e as any));
 }
 
 /**

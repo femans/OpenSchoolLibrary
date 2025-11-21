@@ -1,14 +1,38 @@
-{
-  "extends": "./.svelte-kit/tsconfig.json",
-  "compilerOptions": {
-    "allowJs": true,
-    "checkJs": true,
-    "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "sourceMap": true,
-    "strict": true,
-    "moduleResolution": "bundler"
-  }
-}
+module.exports = {
+	root: true,
+	parser: '@typescript-eslint/parser',
+	extends: [
+		'eslint:recommended',
+		'plugin:@typescript-eslint/recommended',
+		'plugin:svelte/recommended'
+	],
+	plugins: ['@typescript-eslint'],
+	ignorePatterns: ['*.cjs', 'node_modules', '.svelte-kit', 'build', 'dist'],
+	overrides: [
+		{
+			files: ['*.svelte'],
+			parser: 'svelte-eslint-parser',
+			parserOptions: {
+				parser: '@typescript-eslint/parser'
+			}
+		}
+	],
+	parserOptions: {
+		sourceType: 'module',
+		ecmaVersion: 2020,
+		extraFileExtensions: ['.svelte']
+	},
+	env: {
+		browser: true,
+		es2017: true,
+		node: true
+	},
+	rules: {
+		'@typescript-eslint/no-unused-vars': [
+			'warn',
+			{ argsIgnorePattern: '^_', varsIgnorePattern: '^_' }
+		],
+		'@typescript-eslint/no-explicit-any': 'warn',
+		'svelte/no-at-html-tags': 'warn'
+	}
+};

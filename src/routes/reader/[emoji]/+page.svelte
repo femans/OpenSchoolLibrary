@@ -3,12 +3,17 @@
 	import { onMount } from 'svelte';
 	import type { Child, JournalEntryWithDetails } from '$lib/types';
 	import { t } from '$lib/i18n';
+	import EmojiPicker from '$lib/components/EmojiPicker.svelte';
 
 	let emojiId = $page.params.emoji;
 	let child: Child | null = null;
 	let entries: JournalEntryWithDetails[] = [];
 	let loading = true;
 	let error = '';
+	let regenerating = false;
+	let showEmojiPicker = false;
+	let selectedEmojis: string[] = [];
+	let takenEmojiIds: string[] = [];
 
 	onMount(async () => {
 		await loadReaderData();
@@ -31,6 +36,103 @@
 			console.error(err);
 		}
 		loading = false;
+	}
+
+	async function regenerateEmojiId() {
+		if (!child || !confirm('Are you sure you want to generate a new emoji ID? This will change your personal identifier.')) {
+			return;
+		}
+
+		regenerating = true;
+		try {
+			const response = await fetch(`/api/children/${child.id}`, {
+				method: 'PATCH',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ regenerate_emoji: true })
+			});
+
+			if (response.ok) {
+				const data = await response.json();
+				const newEmojiId = data.data.emoji_id;
+				// Update the local state
+				child.emoji_id = newEmojiId;
+				emojiId = newEmojiId;
+				// Update the URL without reloading
+				window.history.pushState({}, '', `/reader/${newEmojiId}`);
+			} else {
+				alert('Failed to regenerate emoji ID. Please try again.');
+			}
+		} catch (err) {
+			console.error('Error regenerating emoji ID:', err);
+			alert('Error regenerating emoji ID');
+		}
+		regenerating = false;
+	}
+
+	async function setCustomEmojiId() {
+		if (!child || selectedEmojis.length !== 3) {
+			return;
+		}
+
+		regenerating = true;
+		const newEmojiId = selectedEmojis.join('');
+
+		try {
+			const response = await fetch(`/api/children/${child.id}`, {
+				method: 'PATCH',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ 
+					custom_emoji_id: newEmojiId
+				})
+			});
+
+			if (response.ok) {
+				const data = await response.json();
+				// Update the local state
+				child.emoji_id = data.data.emoji_id;
+				emojiId = data.data.emoji_id;
+				// Update the URL without reloading
+				window.history.pushState({}, '', `/reader/${data.data.emoji_id}`);
+				// Reset picker
+				showEmojiPicker = false;
+				selectedEmojis = [];
+			} else {
+				const errorData = await response.json();
+				alert(errorData.error || 'Failed to set custom emoji ID. It might already be taken.');
+			}
+		} catch (err) {
+			console.error('Error setting custom emoji ID:', err);
+			alert('Error setting custom emoji ID');
+		}
+		regenerating = false;
+	}
+
+	function handleEmojiChange(event: CustomEvent<string[]>) {
+		selectedEmojis = event.detail;
+	}
+
+	async function openEmojiPicker() {
+		if (!showEmojiPicker && child) {
+			// Pre-populate with current emoji_id when opening
+			const emojiRegex = /\p{Emoji}/gu;
+			selectedEmojis = child.emoji_id.match(emojiRegex) || [];
+			
+			// Fetch all taken emoji IDs
+			try {
+				const response = await fetch('/api/children');
+				if (response.ok) {
+					const data = await response.json();
+					// Filter out current child's ID
+					const childId = child.id;
+					takenEmojiIds = data.data
+						.filter((c: Child) => c.id !== childId)
+						.map((c: Child) => c.emoji_id);
+				}
+			} catch (err) {
+				console.error('Failed to fetch taken emoji IDs:', err);
+			}
+		}
+		showEmojiPicker = !showEmojiPicker;
 	}
 </script>
 
@@ -57,6 +159,53 @@
 			{/if}
 			{#if child.grade_or_class}
 				<p class="text-gray-600">{child.grade_or_class}</p>
+			{/if}
+			
+			<div class="mt-4 flex justify-center gap-3 flex-wrap">
+				<button 
+					on:click={regenerateEmojiId}
+					disabled={regenerating}
+					class="btn btn-secondary text-sm"
+				>
+					{regenerating ? `🔄 ${$t('reader.journal.generating')}` : `🔄 ${$t('reader.journal.generate_random')}`}
+				</button>
+				<button
+					on:click={openEmojiPicker}
+					class="btn btn-primary text-sm"
+				>
+					{showEmojiPicker ? `❌ ${$t('reader.journal.cancel')}` : `😊 ${$t('reader.journal.choose_emojis')}`}
+				</button>
+			</div>
+			<p class="text-xs text-gray-500 mt-2">
+				{$t('reader.journal.emoji_help')}
+			</p>
+
+			<!-- Emoji Picker Section -->
+			{#if showEmojiPicker}
+				<div class="mt-6 p-6 bg-gray-50 rounded-xl border-2 border-purple-300">
+					<h3 class="text-lg font-bold text-gray-800 mb-4 text-center">
+						{$t('reader.journal.pick_3_emojis')} ✨
+					</h3>
+					<EmojiPicker 
+						bind:selectedEmojis
+						requiredCount={3}
+						{takenEmojiIds}
+						on:change={handleEmojiChange}
+					/>
+					<div class="flex justify-center gap-3 mt-4">
+						<button
+							on:click={setCustomEmojiId}
+							disabled={selectedEmojis.length !== 3 || regenerating}
+							class="btn btn-primary"
+						>
+							{#if regenerating}
+								{$t('common.messages.loading')}...
+							{:else}
+								✅ {$t('reader.journal.save_emojis')}
+							{/if}
+						</button>
+					</div>
+				</div>
 			{/if}
 		</div>
 
